@@ -1,0 +1,35 @@
+post http://localhost:3001/fly/addFly
+Content-Type: application/json
+
+{
+    "Altitude":1450,
+    "His":100,
+    "ADI":29
+}
+
+###
+
+post http://localhost:3001/fly/searchFlyByHis
+Content-Type: application/json
+
+{
+    "His":200
+}
+
+###
+
+post http://localhost:3001/fly/searchFlyByADI
+Content-Type: application/json
+
+{
+    "ADI":5
+}
+
+###
+
+post http://localhost:3001/fly/searchFlyByAltitude
+Content-Type: application/json
+
+{
+    "Altitude":200
+}
