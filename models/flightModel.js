@@ -2,9 +2,9 @@ const { Schema, model } = require("mongoose");
 
 // Defines the schema for the flight document
 const flightSchema = new Schema({
-    Altitude: { type: Number, required: true }, // Altitude of the flight
-    His: { type: Number, required: true }, // His of the flight
-    ADI: { type: Number, required: true }, // ADI of the flight
+    Altitude: { type: Number, required: true, min: 0, max: 3000}, // Altitude of the flight (minimum value 0)
+    His: { type: Number, required: true, min: 0, max: 360 }, // His of the flight (minimum value 0, maximum value 360)
+    ADI: { type: Number, required: true, min: 0, max: 100 }, // ADI of the flight (minimum value 0, maximum value 100)
 }, { timestamps: true }); // Adds createdAt and updatedAt fields to the document
 
 // Creates the flight model based on the flightSchema
