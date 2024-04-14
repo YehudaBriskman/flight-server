@@ -1,5 +1,14 @@
 const flightService = require('../services/flightService');
 
+const getAllFlights = async (req, res, next) => {
+    try {
+        const flytes = await flightService.getFlights();
+        res.json(flytes);
+    } catch (error) {
+        next(error);
+    }
+};
+
 // Retrieves flights with His greater than the provided value
 const getFlightsByHis = async (req, res, next) => {
     try {
@@ -48,6 +57,7 @@ const addFlight = async (req, res, next) => {
 };
 
 const flightctrl = {
+    getAllFlights,
     getFlightsByHis,
     getFlightsByAltitude,
     getFlightsByADI,

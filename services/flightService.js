@@ -1,5 +1,10 @@
 const Flight = require('../models/flightModel');
 
+const getFlights = async () => {
+    const flights = await Flight.find();
+    return flights;
+};
+
 // Retrieves flights with His greater than the provided value
 const getFlightsByHis = async (His) => {
     const flights = await Flight.find({ His: {$gt: His} });
@@ -26,6 +31,7 @@ const addFlight = async (flightData) => {
 };
 
 const flightService = {
+    getFlights,
     getFlightsByHis,
     getFlightsByAltitude,
     getFlightsByADI,

@@ -6,6 +6,9 @@ const flightctrl = require("../controllers/flightController"); // Importing fly 
 // Endpoint to register a new flight
 router.post("/addFlight", flightctrl.addFlight); 
 
+//get all the flights
+router.post("/getAllFlights", flightctrl.getAllFlights);
+
 // Endpoint to search for flights by His
 router.post("/searchFlightByHis", flightctrl.getFlightsByHis);
 // Endpoint to search for flights by ADI
