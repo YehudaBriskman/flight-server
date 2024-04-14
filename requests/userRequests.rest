@@ -1,0 +1,20 @@
+post http://localhost:3001/user/register
+Content-Type: application/json
+
+{
+"_id": "kuevm74dwilcs8m3",
+"name":"Koko Hakof",
+"email":"Ofedr@Shelly.com",
+"password":"123456"
+}
+
+### login
+post http://localhost:3001/user/login
+Content-Type: application/json
+
+{
+"email":"Ofedr@Shelly.com",
+"password":"123456"
+}
+
+###

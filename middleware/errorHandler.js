@@ -1,13 +1,11 @@
 const errorHandler = (err, req, res, next) => {
     const errorObj = {};
-    if (err.msg) errorObj.msg = err.msg; // Extracting error message if exists
-    if (err.stack) errorObj.stack = err.stack; // Extracting error stack if exists
-    if (!Object.keys(errorObj).length) {
-        // If the error object is empty, send a generic error message
-        return res.status(err.status ?? 500).send("There was an error");
+    if (err.msg) errorObj.msg = err.msg;
+    if (err.stack && Object.keys(err.stack).length) errorObj.stack = err.stack;
+    if (process.env.MODE == "production" || !Object.keys(errorObj).length) {
+        return res.status(err.status ?? 500).send("there was an error")
     }
-    // If not the error object is not empty, send the error object as JSON
-    res.status(err.status ?? 500).json(errorObj);
+    res.status(err.status ?? 500).json(errorObj)
 };
 
 module.exports = errorHandler;
