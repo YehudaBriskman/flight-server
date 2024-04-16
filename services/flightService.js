@@ -1,31 +1,25 @@
-const Flight = require('../models/flightModel');
-
-const getFlights = async () => {
-    const flights = await Flight.find();
+const getFlights = async (userId) => {
+    const flights = await Flight.find({ UserId: userId });
     return flights;
 };
 
-// Retrieves flights with His greater than the provided value
-const getFlightsByHis = async (His) => {
-    const flights = await Flight.find({ His: {$gt: His} });
+const getFlightsByHis = async (userId, His) => {
+    const flights = await Flight.find({ UserId: userId, His: {$gt: His} });
     return flights;
 };
 
-// Retrieves flights with ADI greater than the provided value
-const getFlightsByADI = async (ADI) => {
-    const flights = await Flight.find({ ADI: {$gt: ADI} });
+const getFlightsByADI = async (userId, ADI) => {
+    const flights = await Flight.find({ UserId: userId, ADI: {$gt: ADI} });
     return flights;
 };
 
-// Retrieves flights with Altitude greater than the provided value
-const getFlightsByAltitude = async (Altitude) => {
-    const flights = await Flight.find({ Altitude: {$gt: Altitude} });
+const getFlightsByAltitude = async (userId, Altitude) => {
+    const flights = await Flight.find({ UserId: userId, Altitude: {$gt: Altitude} });
     return flights;
 };
 
-// Adds a new flyte to the database
-const addFlight = async (flightData) => {
-    const flight = new Flight(flightData);
+const addFlight = async (userId, flightData) => {
+    const flight = new Flight({ ...flightData, UserId: userId });
     const savedFlight = await flight.save();
     return savedFlight;
 };

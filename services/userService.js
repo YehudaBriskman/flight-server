@@ -12,7 +12,9 @@ const getUserById = async (userId) => {
 
 const addUser = async (userData) => {
     const user = new User(userData);
+    console.log({userData});
     const savedUser = await user.save();
+    console.log({savedUser});
     return savedUser;
 };
 
