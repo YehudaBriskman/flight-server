@@ -2,8 +2,7 @@ const flightService = require('../services/flightService');
 
 const getAllFlights = async (req, res, next) => {
     try {
-        const userId = req.user.id; // Extracting the user ID from the request
-        const flights = await flightService.getFlights(userId);
+        const flights = await flightService.getFlights(req.body.UserId);
         res.json(flights);
     } catch (error) {
         next(error);
@@ -13,9 +12,7 @@ const getAllFlights = async (req, res, next) => {
 // Retrieves flights with His greater than the provided value
 const getFlightsByHis = async (req, res, next) => {
     try {
-        const userId = req.user.id;
-        const { His } = req.body;
-        const flights = await flightService.getFlightsByHis(userId, His);
+        const flights = await flightService.getFlightsByHis(req.body.UserId, req.body.His);
         res.json(flights);
     } catch (error) {
         next(error);
@@ -25,9 +22,7 @@ const getFlightsByHis = async (req, res, next) => {
 // Retrieves flights with ADI greater than the provided value
 const getFlightsByADI = async (req, res, next) => {
     try {
-        const userId = req.user.id;
-        const { ADI } = req.body;
-        const flights = await flightService.getFlightsByADI(userId, ADI);
+        const flights = await flightService.getFlightsByADI(req.body.UserId, req.body.ADI);
         res.json(flights);
     } catch (error) {
         next(error);
@@ -37,9 +32,7 @@ const getFlightsByADI = async (req, res, next) => {
 // Retrieves flights with Altitude greater than the provided value
 const getFlightsByAltitude = async (req, res, next) => {
     try {
-        const userId = req.user.id;
-        const { Altitude } = req.body;
-        const flights = await flightService.getFlightsByAltitude(userId, Altitude);
+        const flights = await flightService.getFlightsByAltitude(req.body.UserId, req.body.Altitude);
         res.json(flights);
     } catch (error) {
         next(error);
@@ -49,9 +42,8 @@ const getFlightsByAltitude = async (req, res, next) => {
 // Adds a new flight to the database
 const addFlight = async (req, res, next) => {
     try {
-        const userId = req.user.id;
         const { body } = req;
-        const savedFlight = await flightService.addFlight(userId, body);
+        const savedFlight = await flightService.addFlight(body);
         if (!savedFlight) {
             return res.status(400).json({ error: "Flight not saved" });
         }

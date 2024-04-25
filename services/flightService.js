@@ -1,25 +1,28 @@
-const getFlights = async (userId) => {
-    const flights = await Flight.find({ UserId: userId });
+const Flight = require("../models/flightModel");
+
+const getFlights = async (UserId) => {
+    const flights = await Flight.find({ UserId: UserId });
     return flights;
 };
 
-const getFlightsByHis = async (userId, His) => {
-    const flights = await Flight.find({ UserId: userId, His: {$gt: His} });
+const getFlightsByHis = async (UserId, His) => {
+    const flights = await Flight.find({ UserId: UserId, His: {$gt: His} });
     return flights;
 };
 
-const getFlightsByADI = async (userId, ADI) => {
-    const flights = await Flight.find({ UserId: userId, ADI: {$gt: ADI} });
+const getFlightsByADI = async (UserId, ADI) => {
+    const flights = await Flight.find({ UserId: UserId, ADI: {$gt: ADI} });
     return flights;
 };
 
-const getFlightsByAltitude = async (userId, Altitude) => {
-    const flights = await Flight.find({ UserId: userId, Altitude: {$gt: Altitude} });
+const getFlightsByAltitude = async (UserId, Altitude) => {
+    const flights = await Flight.find({ UserId: UserId, Altitude: {$gt: Altitude} });
     return flights;
 };
 
-const addFlight = async (userId, flightData) => {
-    const flight = new Flight({ ...flightData, UserId: userId });
+const addFlight = async ( flightData) => {
+    const flight = new Flight({ ...flightData});
+    console.log({flight});
     const savedFlight = await flight.save();
     return savedFlight;
 };
